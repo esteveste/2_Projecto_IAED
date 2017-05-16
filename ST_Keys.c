@@ -1,14 +1,32 @@
-#include "ST.h"
+#include "ST_Keys.h"
 
-static link key_head = NULL;//start  
-static link value_head = NULL;//start the tree
+//static link key_head = NULL;//start  
+//static link value_head = NULL;//start the tree
 
 
-//AVL tree Structure
+//AVL tree Structure -> vai ser usada para as Keys
 struct STnode {
     Item item;
     link l, r;
-    int height;};
+    int height;
+};
+
+//inicializa a ST
+void STinit(link*head){
+    *head = NULL;
+} 
+//insert de elementos na ST
+void STinsert(link*head, Item item){
+ *head = insertR(*head, item);
+}
+
+Item STsearch(link head, Key v)
+{
+ return searchR(head, v);
+}
+
+
+
 link NEW(Item item, link l, link r)
 {
     link x = (link)malloc(sizeof(struct STnode));
@@ -18,6 +36,7 @@ link NEW(Item item, link l, link r)
     x->height=1;
     return x;
 }
+
 int height(link h){
     if (h == NULL) return 0;
     return h->height;
@@ -40,7 +59,8 @@ link rotR(link h)
     update_height(h);
     update_height(x);
     return x;
-} 
+}
+
 void update_height(link h)
 {
     int height_left = height(h->l);
@@ -115,4 +135,25 @@ link deleteR(link h, Key k) {
     }
     h=AVLbalance(h);
     return h;
+} 
+
+
+
+//in order to be worked
+//visit -> print
+void print_Ordered_ST(link h)
+{
+ if (h == NULL)
+ return;
+ print_Ordered_ST(h->l);
+ visit(h);
+ print_Ordered_ST(h->r);
+}
+
+
+//max da arvore
+link max(link h) {
+ while(h!=NULL && h->r!=NULL)
+h=h->r;
+ return h;
 } 

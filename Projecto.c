@@ -1,10 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "Item.h"
-//#include "ST.h"
+#include "Projecto.h"
 
-void command_A();
+//link st_Keys;//estrutura q ordena alfabeticamente as chaves
+//buffer_Link st_Values;//estrutura possibilita a obtecao do maximo da estrutura anterior
 
 int main(){
     while(1){
