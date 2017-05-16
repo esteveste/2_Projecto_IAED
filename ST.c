@@ -1,7 +1,14 @@
 #include "ST.h"
 
+static link key_head = NULL;//start  
+static link value_head = NULL;//start the tree
+
+
 //AVL tree Structure
-struct STnode { Item item; link l, r; int height};
+struct STnode {
+    Item item;
+    link l, r;
+    int height;};
 link NEW(Item item, link l, link r)
 {
     link x = (link)malloc(sizeof(struct STnode));

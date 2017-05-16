@@ -1,5 +1,5 @@
-#ifndef _ST_
-#define _ST_
+#ifndef ST
+#define ST
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,4 +13,6 @@ void STinsert(link*,Item);
 void STdelete(link*,Key);
 void STsort(link,void (*visit)(Item));
 void STfree(link*);
+void update_height(link);
+link deleteR(link, Key);
 #endif

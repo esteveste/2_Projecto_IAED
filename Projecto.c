@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Item.h"
-#include "ST.h"
+//#include "ST.h"
 
 void command_A();
 
@@ -34,11 +34,14 @@ int main(){
                 //clean_Line_Stdin();
                 break;
         }
+        getchar();//scanf nao obtem o \n
     }
     return -1;//Something wrong happened
 }
 void command_A(){
-    //scanf("%x", &number)     %u/decimal unsigned
+    Item item = scan_Item();
+
+    //scanf("%x %d", &key,&value);     //%u/decimal unsigned
 
 }
 
