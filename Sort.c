@@ -1,7 +1,7 @@
 #include <stdio.h>
-//#include "ADT.h"
+
 int less(int a, int b){
-    return a<=b;
+    return a<b;
 }
 int findMiddle(int l, int r);
 void parcialQuickInsertSort(int a[],int l,int r,int sort);
