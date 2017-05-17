@@ -11,22 +11,24 @@ struct STnode {
     int height;
 };
 
-/*
+
 //inicializa a ST
-void STinit(link*head){
+void STinit(link* head){
     *head = NULL;
 } 
 //insert de elementos na ST
-void STinsert(link*head, Item item){
+void STinsert(link* head, Item item){
     *head = insertR(*head, item);
 }
 
-Item STsearch(link head, Key v)
-{
-    return searchR(head, v);
-}
+void STdelete(link* head, Key k){
+     *head = deleteR(*head, k);
+} 
 
-*/
+void STfree(link* head)
+{
+    *head=freeR(*head);
+}
 
 link NEW(Item item, link l, link r)
 {
@@ -159,14 +161,32 @@ link max(link h) {
 } 
 
 //search
-Item searchR(link h, Key v)
+Item STsearch(link h, Key v)
 {
      if (h == NULL)
-        return NULLitem;
+        return NULLItem;
     if (eq(v, get_Key(h->item)))
         return h->item;
     if (less(v, get_Key(h->item)))
-        return searchR(h->l, v);
+        return STsearch(h->l, v);
     else
-        return searchR(h->r, v);
+        return STsearch(h->r, v);
 } 
+
+link freeR(link h)
+{
+    if (h==NULL)
+        return h;
+    h->l=freeR(h->l);
+    h->r=freeR(h->r);
+    return deleteR(h,get_Key(h->item));
+}
+
+int STcount(link h){
+    if (h==NULL) return 0;
+    else return STcount(h->r)+STcount(h->l)+1; 
+}
+
+
+
+

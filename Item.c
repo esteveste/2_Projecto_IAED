@@ -15,8 +15,10 @@ Item newItem(Key key, Value value){
     return new_item;
 }
 
-void sumItem(Item item,Value value){
+void sumItemStock(Item item,Value value){
     item->value +=value;
+    if(item->value < 0)
+        item->value = 0;
 }
 
 int lessItemKey(Item a, Item b){
@@ -46,7 +48,7 @@ Item scan_Item(){
 }
 
 void writeln_Item(Item item){
-    printf("%x %d\n",get_Key(item),get_Value(item));
+    printf("%08x %d\n",get_Key(item),get_Value(item));//%08x pk o Key tem 8 caracters
 }
 
 Key get_Key(Item item){

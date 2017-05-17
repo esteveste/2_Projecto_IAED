@@ -10,14 +10,19 @@ typedef struct STnode* link;
 #define key(a) (a->key) 
 
 //funcoes arvore
+//inicia a arvore
 void STinit(link*);
+
 int STcount(link);
-Item STsearch(link,Key);
+//inserte elemento
 void STinsert(link*,Item);
 void STdelete(link*,Key);
-void STsort(link,void (*visit)(Item));
+//void STsort(link,void (*visit)(Item));
+//funcao q liberta a arvore da memoria
 void STfree(link*);
-
+Item STsearch(link h, Key v);//encontra node com uma certa chave
+//imprime alfabeticamente os items
+void print_Ordered_ST(link h);
 
 link deleteR(link, Key);
 
@@ -37,8 +42,8 @@ link AVLbalance(link h);//vamos equilibrar a arvore
 link insertR(link h, Item item);//insere um Item
 link deleteR(link h, Key k);//apagamos um item conforme a chave
 
-void print_Ordered_ST(link h);//imprime alfabeticamente os items
 
+link freeR(link h);//liberta a arvore
 link max(link h);//maximo da arvore
 
 
