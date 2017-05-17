@@ -1,6 +1,6 @@
 #include "Projecto.h"
 
-//link st_Keys;//estrutura q ordena alfabeticamente as chaves
+link st_Keys;//estrutura q ordena alfabeticamente as chaves
 //buffer_Link st_Values;//estrutura possibilita a obtecao do maximo da estrutura anterior
 
 int main(){
@@ -14,6 +14,7 @@ int main(){
                 command_A();
                 break;
             case 'l':
+
                 /*Lista alfabeticamente todos os produtos*/
                 break;
             case 'm':

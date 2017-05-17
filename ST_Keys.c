@@ -11,21 +11,22 @@ struct STnode {
     int height;
 };
 
+/*
 //inicializa a ST
 void STinit(link*head){
     *head = NULL;
 } 
 //insert de elementos na ST
 void STinsert(link*head, Item item){
- *head = insertR(*head, item);
+    *head = insertR(*head, item);
 }
 
 Item STsearch(link head, Key v)
 {
- return searchR(head, v);
+    return searchR(head, v);
 }
 
-
+*/
 
 link NEW(Item item, link l, link r)
 {
@@ -40,6 +41,15 @@ link NEW(Item item, link l, link r)
 int height(link h){
     if (h == NULL) return 0;
     return h->height;
+} 
+
+void update_height(link h)
+{
+    int height_left = height(h->l);
+    int height_right = height(h->r);
+    h->height = height_left >
+    height_right ? height_left + 1 :
+    height_right + 1;
 } 
 
 link rotL(link h)
@@ -61,15 +71,6 @@ link rotR(link h)
     return x;
 }
 
-void update_height(link h)
-{
-    int height_left = height(h->l);
-    int height_right = height(h->r);
-    h->height = height_left >
-    height_right ? height_left + 1 :
-    height_right + 1;
-} 
-
 link rotLR(link h) /*rotação dupla esquerda direita*/
 {
     if (h==NULL) return h;
@@ -82,6 +83,7 @@ link rotRL(link h) /*rotação dupla direita esquerda*/
     h->r=rotR(h->r);
     return rotL(h);
 }
+
 int Balance(link h) {/*Balance factor*/
     if(h == NULL) return 0;
     return height(h->l)-height(h->r);
@@ -102,27 +104,28 @@ link AVLbalance(link h) {
     update_height(h);
     return h;
 } 
+
 link insertR(link h, Item item)
 {
     if (h == NULL)
-    return NEW(item, NULL, NULL);
-    if (less(key(item), key(h->item)))
-    h->l = insertR(h->l, item);
+        return NEW(item, NULL, NULL);
+    if (less(get_Key(item), get_Key(h->item)))
+        h->l = insertR(h->l, item);
     else
-    h->r = insertR(h->r, item);
+        h->r = insertR(h->r, item);
     h=AVLbalance(h);
     return h;
 } 
 
 link deleteR(link h, Key k) {
     if (h==NULL) return h;
-    else if (less(k, key(h->item))) h->l=deleteR(h->l,k);
-    else if (less(key(h->item), k)) h->r=deleteR(h->r,k) ;
+    else if (less(k, get_Key(h->item))) h->l=deleteR(h->l,k);
+    else if (less(get_Key(h->item), k)) h->r=deleteR(h->r,k) ;
     else{
         if (h->l !=NULL && h->r !=NULL){
             link aux=max(h->l);
             {Item x; x=h->item; h->item=aux->item; aux->item=x;}
-            h->l= deleteR(h->l, key(aux->item));
+            h->l= deleteR(h->l, get_Key(aux->item));
         }
         else {
             link aux=h;
@@ -138,22 +141,32 @@ link deleteR(link h, Key k) {
 } 
 
 
-
 //in order to be worked
-//visit -> print
 void print_Ordered_ST(link h)
 {
- if (h == NULL)
- return;
- print_Ordered_ST(h->l);
- visit(h);
- print_Ordered_ST(h->r);
+    if (h == NULL)
+        return;
+    print_Ordered_ST(h->l);
+    writeln_Item(h->item);//imprime o item
+    print_Ordered_ST(h->r);
 }
-
 
 //max da arvore
 link max(link h) {
- while(h!=NULL && h->r!=NULL)
-h=h->r;
- return h;
+    while(h!=NULL && h->r!=NULL)//enquanto o proximo elemento da arvore nao for nulo
+        h=h->r;//vai para o proximo
+    return h;
+} 
+
+//search
+Item searchR(link h, Key v)
+{
+     if (h == NULL)
+        return NULLitem;
+    if (eq(v, get_Key(h->item)))
+        return h->item;
+    if (less(v, get_Key(h->item)))
+        return searchR(h->l, v);
+    else
+        return searchR(h->r, v);
 } 

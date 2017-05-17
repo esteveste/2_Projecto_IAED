@@ -25,7 +25,7 @@ int lessItemKey(Item a, Item b){
 int lessItemValue(Item a, Item b){
     return a->value<b->value? 1 : 0;
 }
-void freeItem(Item item){
+void deleteItem(Item item){
     free(item);
 }
 
@@ -47,4 +47,11 @@ Item scan_Item(){
 
 void writeln_Item(Item item){
     printf("%x %d\n",get_Key(item),get_Value(item));
+}
+
+Key get_Key(Item item){
+    return item->key;
+}
+Value get_Value(Item item){
+    return item->value;
 }

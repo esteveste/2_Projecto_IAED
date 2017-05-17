@@ -5,10 +5,12 @@
 #include <stdio.h>
 #include "Item.h"
 
-#define BufferSize 50 //size of memory buffer
+#define BufferSize 20 //size of memory buffer
 
-void Buffer_Init();//inicializa o buffer
+void buffer_Init();//inicializa o buffer
 
+//vamos introduzir o valor no buffer
+void insertBuffer(Item item);
 
 
 
