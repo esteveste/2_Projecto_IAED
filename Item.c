@@ -35,6 +35,7 @@ void deleteItem(Item item){
 Key scan_Key(){
     Key key;
     scanf("%x",&key);
+    getchar();//scanf nao obtem o \n
     return key;
 
 }
@@ -43,6 +44,7 @@ Item scan_Item(){
     Key key;
     Value value;
     scanf("%x %d",&key,&value);//vamos buscar os valores do stdin
+    getchar();//scanf nao obtem o \n
     Item item = newItem(key,value);//cria o Item com os valores obtidos
     return item;
 }
@@ -56,4 +58,8 @@ Key get_Key(Item item){
 }
 Value get_Value(Item item){
     return item->value;
+}
+
+int valueNegative(Value value){
+    return value < 0;
 }

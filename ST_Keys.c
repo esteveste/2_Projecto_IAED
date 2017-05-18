@@ -187,6 +187,13 @@ int STcount(link h){
     else return STcount(h->r)+STcount(h->l)+1; 
 }
 
-
-
+link nextNodeLeft(link a){
+    return a->l;
+}
+link nextNodeRight(link a){
+    return a->r;
+}
+Item nodeItem(link a){
+    return a->item;
+}
 

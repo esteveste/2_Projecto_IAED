@@ -5,9 +5,12 @@
 
 #include "Item.h"
 #include "ST_Keys.h"
-
+//#include "ST_Values.h"
+#include "max_V1.h"
 link estrutura_Keys;//estrutura q ordena alfabeticamente as chaves
 //buffer_Link st_Values;//estrutura possibilita a obtecao do maximo da estrutura anterior
+
+//Item stmax;
 
 int main(){
     
@@ -22,7 +25,7 @@ int main(){
                 /*Incrementa ou reduz o número de unidades associadas ao produto com o código dado. Se
                 o código não existir deverá ser criado um novo produto com esse código.*/
                 command_A();
-                getchar();//scanf nao obtem o \n
+                
                 break;
             case 'l':
                 /*Lista alfabeticamente todos os produtos*/
@@ -31,12 +34,11 @@ int main(){
             case 'm':
                 /*Escreve o produto com o maior número de unidades em stock. */
                 command_M();
-                getchar();//scanf nao obtem o \n
+                
                 break;
             case 'r':
                 /*Remove o produto com o código dado*/
                 command_R();
-                 getchar();//scanf nao obtem o \n
                 break;
             case 'x':
                 printf("%d\n",STcount(estrutura_Keys));/*imprime o nr de Itens registadas*/ 
@@ -56,11 +58,14 @@ void command_A(){
     Item existentItem = STsearch(estrutura_Keys,get_Key(item));
     if(existentItem != NULLItem){
         //se o elemento ja existe na estrutura
-        //ve primeiro o max, visto q o maximo encontra se na estrutura
-        sumItemStock(existentItem,get_Value(item));
+        sumItemStock(existentItem,get_Value(item));//modifica
+        changeMax(existentItem,get_Value(item),estrutura_Keys);//vamos verificar se alteramos o max
+        //modifyBuffer(existentItem,get_Value(item));//e vamos verificar o max conforme o valor q alteramos
     }else{
         //caso contrario criamos um novo item para inserir na arvore
         STinsert(&estrutura_Keys,item);//vamos buscar o endereco do pointer e mandamos
+        setMax(item);//definimos o max
+        //insertBuffer(item);//vamos inserir o item no buffer dos valores
     }
 
 
@@ -70,7 +75,7 @@ void command_L(){
     print_Ordered_ST(estrutura_Keys);
 }
 void command_M(){
-
+    writeMax();
 }
 void command_R(){
     Key chave = scan_Key();

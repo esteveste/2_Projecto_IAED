@@ -16,6 +16,7 @@ typedef int Value;
 Item newItem(unsigned int key, int value);//cria um novo Item
 int lessItemKey(Item a, Item b);//retorna 1 se chave do item a < chave do item b, e 0 se a>=b
 int lessItemValue(Item a, Item b);//retorna 1 se o valor do item a < valor do item b, e 0 caso contrario
+int valueNegative(Value value);//retorna 1 se o value for negativo, 0 caso contrario
 void deleteItem(Item item);//releases item from memory
 void sumItemStock(Item item,int value);//Soma o value ao value do item,caso for negativo = 0
 

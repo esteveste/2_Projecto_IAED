@@ -8,7 +8,6 @@
 typedef struct STnode* link;
 
 #define key(a) (a->key) 
-
 //funcoes arvore
 //inicia a arvore
 void STinit(link*);
@@ -46,5 +45,9 @@ link deleteR(link h, Key k);//apagamos um item conforme a chave
 link freeR(link h);//liberta a arvore
 link max(link h);//maximo da arvore
 
+
+link nextNodeLeft(link a);
+link nextNodeRight(link a);
+Item nodeItem(link a);
 
 #endif
