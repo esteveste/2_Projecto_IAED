@@ -1,16 +1,11 @@
 #include "ST_Keys.h"
 
-//static link key_head = NULL;//start  
-//static link value_head = NULL;//start the tree
-
-
 //AVL tree Structure -> vai ser usada para as Keys
 struct STnode {
     Item item;
     link l, r;
     int height;
 };
-
 
 //inicializa a ST
 void STinit(link* head){

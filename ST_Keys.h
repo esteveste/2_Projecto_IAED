@@ -16,7 +16,6 @@ int STcount(link);
 //inserte elemento
 void STinsert(link*,Item);
 void STdelete(link*,Key);
-//void STsort(link,void (*visit)(Item));
 //funcao q liberta a arvore da memoria
 void STfree(link*);
 Item STsearch(link h, Key v);//encontra node com uma certa chave
@@ -40,14 +39,11 @@ link AVLbalance(link h);//vamos equilibrar a arvore
 
 link insertR(link h, Item item);//insere um Item
 link deleteR(link h, Key k);//apagamos um item conforme a chave
-
-
 link freeR(link h);//liberta a arvore
+
 link max(link h);//maximo da arvore
-
-
-link nextNodeLeft(link a);
+link nextNodeLeft(link a);//ve o prox node a esquerda
 link nextNodeRight(link a);
-Item nodeItem(link a);
+Item nodeItem(link a);//vai buscar o item ao node
 
 #endif
